@@ -10,36 +10,72 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/distance_to_target_m"
-        android:textSize="20sp" />
+        android:text="@string/distance_to_target"
+        android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/distanceEditText"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="@string/enter_distance_to_target"
-        android:inputType="numberDecimal"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/distanceEditText"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:hint="@string/enter_distance_to_target"
+            android:inputType="numberDecimal"
+            android:textSize="14sp" />
+
+        <Spinner
+            android:id="@+id/distanceUnitSpinner"
+            android:layout_width="140dp"
+            android:layout_height="60dp"
+            android:entries="@array/distance_unit_options" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/distance_to_move_impacts_mm"
-        android:textSize="20sp" />
+        android:text="@string/distance_to_move_impacts"
+        android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/impactEditText"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="@string/enter_distance_to_move_impacts"
-        android:inputType="numberDecimal"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/impactEditText"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:hint="@string/enter_distance_to_move_impacts"
+            android:inputType="numberDecimal"
+            android:textSize="14sp" />
+
+        <Spinner
+            android:id="@+id/impactUnitSpinner"
+            android:layout_width="140dp"
+            android:layout_height="60dp"
+            android:entries="@array/impact_unit_options" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/scope_adjustment_clicks"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
     <Spinner
         android:id="@+id/adjustmentSpinner"
@@ -48,6 +84,10 @@
         android:dropDownWidth="wrap_content"
         android:entries="@array/adjustment_options" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
     <TextView
         android:id="@+id/resultTextView"
         android:layout_width="match_parent"
@@ -55,9 +95,21 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/resultTextViewDebug"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Build v0.03" />
+        android:layout_height="120dp"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/buildTextView"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="@string/build_number"
+        android:textSize="12sp" />
 
 </LinearLayout>

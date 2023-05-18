@@ -15,7 +15,9 @@ import kotlin.math.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var distanceEditText: EditText
+    private lateinit var distanceUnitSpinner: Spinner
     private lateinit var impactEditText: EditText
+    private lateinit var impactUnitSpinner: Spinner
     private lateinit var adjustmentSpinner: Spinner
     private lateinit var resultTextView: TextView
 
@@ -24,48 +26,75 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         distanceEditText = findViewById(R.id.distanceEditText)
+        distanceUnitSpinner = findViewById(R.id.distanceUnitSpinner)
         impactEditText = findViewById(R.id.impactEditText)
+        impactUnitSpinner = findViewById(R.id.impactUnitSpinner)
         adjustmentSpinner = findViewById(R.id.adjustmentSpinner)
         resultTextView = findViewById(R.id.resultTextView)
 
         val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.adjustment_options,
-            R.layout.spinner_item
+            R.layout.spinner_item_big
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         adjustmentSpinner.adapter = adapter
 
-        distanceEditText.addTextChangedListener(textWatcher)
-        impactEditText.addTextChangedListener(textWatcher)
-        adjustmentSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                calculateClicks()
-            }
+        val distanceUnitAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.distance_unit_options,
+            R.layout.spinner_item_small
+        )
+        distanceUnitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        distanceUnitSpinner.adapter = distanceUnitAdapter
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Do nothing
-            }
+        val impactUnitAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.impact_unit_options,
+            R.layout.spinner_item_small
+        )
+        impactUnitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        impactUnitSpinner.adapter = impactUnitAdapter
+
+        val textWatchers = arrayOf(distanceTextWatcher, impactTextWatcher)
+        distanceEditText.addTextChangedListener(textWatchers[0])
+        impactEditText.addTextChangedListener(textWatchers[1])
+
+        val spinnerListeners = arrayOf(distanceUnitSpinnerListener, impactUnitSpinnerListener)
+        distanceUnitSpinner.onItemSelectedListener = spinnerListeners[0]
+        impactUnitSpinner.onItemSelectedListener = spinnerListeners[1]
+    }
+
+    private val distanceTextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable?) {
+            calculateClicks()
         }
     }
 
-    private val textWatcher = object : TextWatcher {
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            // Do nothing
+    private val impactTextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable?) {
+            calculateClicks()
         }
+    }
 
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+    private val distanceUnitSpinnerListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             calculateClicks()
         }
 
-        override fun afterTextChanged(s: Editable?) {
-            // Do nothing
+        override fun onNothingSelected(parent: AdapterView<*>?) {}
+    }
+
+    private val impactUnitSpinnerListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            calculateClicks()
         }
+
+        override fun onNothingSelected(parent: AdapterView<*>?) {}
     }
 
     private fun calculateClicks() {
@@ -77,8 +106,11 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val distance = distanceText.toDouble()
-        val impact = impactText.toDouble()
+        val distanceUnit = distanceUnitSpinner.selectedItem.toString()
+        val impactUnit = impactUnitSpinner.selectedItem.toString()
+
+        val distance = convertToMeters(distanceText, distanceUnit)
+        val impact = convertToMillimeters(impactText, impactUnit)
 
         val adjustment = when (adjustmentSpinner.selectedItemPosition) {
             0 -> 0.25 // 1/4 MoA
@@ -92,9 +124,32 @@ class MainActivity : AppCompatActivity() {
         val moa = (21600 * impact / 1000) / (2 * 3.141592654 * distance)
         val formattedMoa = String.format("%.3f", moa)
 
-        val clicksraw = (moa / adjustment)
-        val clicks = round(moa / adjustment).toInt()
+        val clicksRaw = moa * (1 / adjustment)
+        val clicks = round(clicksRaw).toInt()
 
-        resultTextView.text = "MoA: $formattedMoa\nClicks: $clicks\nClicksRaw: $clicksraw"
+        resultTextView.text = "MoA: $formattedMoa\nClicks: $clicks\nClicksRaw: $clicksRaw"
     }
+
+    private fun convertToMeters(distanceText: String, unit: String): Double {
+        val distance = distanceText.toDouble()
+
+        return when (unit) {
+            "Meters" -> distance // Already in meters
+            "Yards" -> distance * 0.9144 // Convert yards to meters
+            "Feet" -> distance * 0.304 // Convert Feet to meters
+            else -> 0.0
+        }
+    }
+
+    private fun convertToMillimeters(impactText: String, unit: String): Double {
+        val impact = impactText.toDouble()
+
+        return when (unit) {
+            "Millimeters" -> impact // Already in millimeters
+            "Centimeters" -> impact * 10 // Convert inches to millimeters
+            "Inches" -> impact * 25.4 // Convert inches to millimeters
+            else -> 0.0
+        }
+    }
+
 }
