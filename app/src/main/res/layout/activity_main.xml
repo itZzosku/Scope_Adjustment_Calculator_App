@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/distance_to_target_m"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/distanceEditText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/enter_distance_to_target"
+        android:inputType="numberDecimal"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/distance_to_move_impacts_mm"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/impactEditText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/enter_distance_to_move_impacts"
+        android:inputType="numberDecimal"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/scope_adjustment_clicks"
+        android:textSize="20sp" />
+
+    <Spinner
+        android:id="@+id/adjustmentSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:dropDownWidth="wrap_content"
+        android:entries="@array/adjustment_options" />
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Build v0.02" />
+
+</LinearLayout>

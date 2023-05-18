@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Scope Adjustment Calculator</string>
+    <string name="distance_to_target_m">Distance to Target (m)</string>
+    <string name="enter_distance_to_target">Enter Distance to Target</string>
+    <string name="distance_to_move_impacts_mm">Distance to Move Impacts (mm)</string>
+    <string name="enter_distance_to_move_impacts">Enter Distance to Move Impacts</string>
+    <string name="scope_adjustment_clicks">Scope Adjustment Clicks</string>
+    <string-array name="adjustment_options">
+        <item>1/4 MoA</item>
+        <item>1/2 MoA</item>
+        <item>1 MoA</item>
+        <item>0.1 MRAD</item>
+        <item>0.1 MIL</item>
+    </string-array>
+</resources>
