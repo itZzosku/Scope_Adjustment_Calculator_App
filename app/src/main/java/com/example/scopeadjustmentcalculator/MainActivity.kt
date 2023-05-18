@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
         val clicksRaw = moa * (1 / adjustment)
         val clicks = round(clicksRaw).toInt()
 
-        resultTextView.text = "MoA: $formattedMoa\nClicks: $clicks\nClicksRaw: $clicksRaw"
+        resultTextView.text = "MoA: $formattedMoa\nClicks: $clicks\nClicks Raw: $clicksRaw"
     }
 
     private fun convertToMeters(distanceText: String, unit: String): Double {

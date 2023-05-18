@@ -25,11 +25,11 @@
             android:layout_weight="1"
             android:hint="@string/enter_distance_to_target"
             android:inputType="numberDecimal"
-            android:textSize="14sp" />
+            android:textSize="15sp" />
 
         <Spinner
             android:id="@+id/distanceUnitSpinner"
-            android:layout_width="140dp"
+            android:layout_width="129dp"
             android:layout_height="60dp"
             android:entries="@array/distance_unit_options" />
 
@@ -37,7 +37,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="30dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -57,11 +57,11 @@
             android:layout_weight="1"
             android:hint="@string/enter_distance_to_move_impacts"
             android:inputType="numberDecimal"
-            android:textSize="14sp" />
+            android:textSize="15sp" />
 
         <Spinner
             android:id="@+id/impactUnitSpinner"
-            android:layout_width="140dp"
+            android:layout_width="129dp"
             android:layout_height="60dp"
             android:entries="@array/impact_unit_options" />
 
@@ -69,7 +69,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="30dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -86,7 +86,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="30dp" />
 
     <TextView
         android:id="@+id/resultTextView"
@@ -105,11 +105,26 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <TextView
-        android:id="@+id/buildTextView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:text="@string/build_number"
-        android:textSize="12sp" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/buildTextView"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:text="@string/build_number"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/OsseyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="@string/Ossey"
+            android:textSize="12sp" />
+
+    </LinearLayout>
 
 </LinearLayout>
