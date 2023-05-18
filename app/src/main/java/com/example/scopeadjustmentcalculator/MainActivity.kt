@@ -12,8 +12,6 @@ import android.widget.AdapterView
 import android.view.View
 import kotlin.math.*
 
-
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var distanceEditText: EditText
