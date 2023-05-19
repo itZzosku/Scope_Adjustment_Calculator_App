@@ -2,10 +2,12 @@
     <string name="app_name">Scope Adjustment Calculator</string>
     <string name="distance_to_target">Distance to Target</string>
     <string name="enter_distance_to_target">Enter Distance to Target</string>
-    <string name="distance_to_move_impacts">Distance to Move Impacts</string>
-    <string name="enter_distance_to_move_impacts">Enter Distance to Move Impacts</string>
+    <string name="distance_to_move_impacts_x">Distance to Move Impacts in Horizontal X Axis</string>
+    <string name="distance_to_move_impacts_y">Distance to Move Impacts in Vertical Y Axis</string>
+    <string name="enter_distance_to_move_impacts_x">Enter Distance to Move Impacts in Horizontal X Axis</string>
+    <string name="enter_distance_to_move_impacts_y">Enter Distance to Move Impacts in Vertical Y Axis</string>
     <string name="scope_adjustment_clicks">Scope Adjustment Clicks</string>
-    <string name="build_number">Build v0.04</string>
+    <string name="build_number">Build v0.05</string>
     <string name="Ossey">Ossey Studios</string>
 
     <string-array name="adjustment_options">
